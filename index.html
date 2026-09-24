@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Build & Publish Websites with AI — Free Course</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0E1120;
+    --surface:#171A2E;
+    --surface-2:#1E2238;
+    --line:#2A2E48;
+    --text:#EEEFF6;
+    --muted:#9AA0BD;
+    --lime:#B9FF66;
+    --indigo:#7C8CFF;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  *{box-sizing:inherit;margin:0;padding:0;}
+  html{scroll-padding-top:env(safe-area-inset-top,0px);}
+  html,body{height:100%;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',system-ui,sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.brand{font-family:'Space Grotesk',system-ui,sans-serif;}
+  .wrap{max-width:480px;margin:0 auto;padding:0 20px;}
+
+  header{padding:22px 0 8px;}
+  .brand{display:flex;align-items:center;gap:8px;font-weight:600;font-size:15px;color:var(--text);}
+  .brand .dot{width:8px;height:8px;border-radius:50%;background:var(--lime);}
+
+  .hero{padding:28px 0 20px;}
+  .hero h1{
+    font-size:34px;
+    line-height:1.15;
+    font-weight:700;
+    letter-spacing:-0.01em;
+  }
+  .hero h1 span{color:var(--lime);}
+  .hero p{
+    margin-top:14px;
+    color:var(--muted);
+    font-size:16px;
+    max-width:38ch;
+  }
+
+  .price-row{
+    margin-top:22px;
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+  }
+  .price-row .old{color:var(--muted);text-decoration:line-through;font-size:16px;}
+  .price-row .new{font-family:'Space Grotesk';font-size:28px;font-weight:700;color:var(--lime);}
+
+  .cta{
+    display:block;
+    text-align:center;
+    margin-top:20px;
+    padding:15px 20px;
+    border-radius:12px;
+    background:var(--lime);
+    color:#0E1120;
+    font-weight:600;
+    font-size:16px;
+    text-decoration:none;
+    border:none;
+  }
+  .cta.secondary{
+    background:transparent;
+    color:var(--text);
+    border:1px solid var(--line);
+    margin-top:10px;
+  }
+
+  section{padding:26px 0;border-top:1px solid var(--line);}
+  section h2{font-size:20px;font-weight:600;margin-bottom:14px;}
+
+  .outcomes{list-style:none;display:flex;flex-direction:column;gap:12px;}
+  .outcomes li{
+    display:flex;
+    gap:12px;
+    font-size:15px;
+    color:var(--text);
+  }
+  .outcomes li::before{
+    content:"";
+    flex:0 0 6px;
+    width:6px;height:6px;
+    border-radius:50%;
+    background:var(--indigo);
+    margin-top:8px;
+  }
+
+  .schedule-card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:18px;
+  }
+  .schedule-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 0;
+  }
+  .schedule-row + .schedule-row{border-top:1px solid var(--line);}
+  .schedule-row .label{font-size:14px;color:var(--muted);}
+  .schedule-row .value{font-size:15px;font-weight:500;}
+
+  .steps{display:flex;flex-direction:column;gap:16px;}
+  .step{
+    display:flex;
+    gap:14px;
+    align-items:flex-start;
+  }
+  .step .num{
+    flex:0 0 30px;
+    height:30px;
+    border-radius:8px;
+    background:var(--surface-2);
+    border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Space Grotesk';font-size:13px;color:var(--indigo);
+  }
+  .step .body h3{font-size:15px;font-weight:600;margin-bottom:3px;}
+  .step .body p{font-size:14px;color:var(--muted);}
+
+  .faq details{
+    border-top:1px solid var(--line);
+    padding:14px 0;
+  }
+  .faq details:first-child{border-top:none;}
+  .faq summary{
+    cursor:pointer;
+    font-size:15px;
+    font-weight:500;
+    list-style:none;
+  }
+  .faq summary::-webkit-details-marker{display:none;}
+  .faq summary::after{
+    content:"+";
+    float:right;
+    color:var(--indigo);
+  }
+  .faq details[open] summary::after{content:"–";}
+  .faq p{margin-top:8px;color:var(--muted);font-size:14px;}
+
+  footer{padding:28px 0 90px;color:var(--muted);font-size:13px;text-align:center;}
+
+  .wa-float{
+    position:fixed;
+    right:18px;
+    bottom:calc(18px + env(safe-area-inset-bottom,0px));
+    width:56px;height:56px;
+    border-radius:50%;
+    background:#25D366;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 8px 24px rgba(0,0,0,0.4);
+    text-decoration:none;
+    z-index:10;
+  }
+  .wa-float svg{width:28px;height:28px;}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div class="brand"><span class="dot"></span> AI Website Lab</div>
+  </header>
+
+  <div class="hero">
+    <h1>Build a <span>website</span> with AI. Publish it. Pay nothing.</h1>
+    <p>A short live course that takes you from zero to a real, live website — using free AI tools and free hosting. No coding. No card needed for any of it.</p>
+
+    <div class="price-row">
+      <span class="new">$50 for the full course</span>
+    </div>
+
+    <a class="cta" id="waCta" href="#">Message on WhatsApp to book</a>
+    <a class="cta secondary" href="#schedule">See class schedule</a>
+  </div>
+
+  <section>
+    <h2>What you'll walk away with</h2>
+    <ul class="outcomes">
+      <li>A live website you built yourself, with your own content</li>
+      <li>A free AI workflow to design pages without writing code</li>
+      <li>A free hosting setup so your site stays online after class</li>
+      <li>Enough know-how to build the next site on your own</li>
+    </ul>
+  </section>
+
+  <section id="schedule">
+    <h2>Class schedule</h2>
+    <div class="schedule-card">
+      <div class="schedule-row">
+        <span class="label">Frequency</span>
+        <span class="value">2 classes / week</span>
+      </div>
+      <div class="schedule-row">
+        <span class="label">Format</span>
+        <span class="value">Live, WhatsApp video call</span>
+      </div>
+      <div class="schedule-row">
+        <span class="label">Class length</span>
+        <span class="value">30 minutes</span>
+      </div>
+      <div class="schedule-row">
+        <span class="label">Timing</span>
+        <span class="value">Flexible — set after you message</span>
+      </div>
+      <div class="schedule-row">
+        <span class="label">Where</span>
+        <span class="value">Anywhere — on WhatsApp</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>How the course runs</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="num">1</div>
+        <div class="body">
+          <h3>Message on WhatsApp</h3>
+          <p>Tap the button and pay $50 to book your spot for the full course.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <div class="body">
+          <h3>We agree on a time</h3>
+          <p>No fixed slot — you and I settle each class time over WhatsApp, whenever suits you.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <div class="body">
+          <h3>Class, by WhatsApp video call</h3>
+          <p>I call you on WhatsApp video. Each class runs 30 minutes, twice a week — design with AI first, then publish for free.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq">
+    <h2>Questions people ask</h2>
+    <details>
+      <summary>Do I need any coding experience?</summary>
+      <p>No. Everything is done through AI tools with plain-language prompts.</p>
+    </details>
+    <details>
+      <summary>Is the hosting really free?</summary>
+      <p>Yes — we use hosting providers with a genuine free tier, no card required.</p>
+    </details>
+    <details>
+      <summary>How much does the course cost?</summary>
+      <p>$50 for the full course, paid when you message to book.</p>
+    </details>
+    <details>
+      <summary>Where do classes happen?</summary>
+      <p>On a WhatsApp video call — you can join from any country, at a time we agree on together.</p>
+    </details>
+    <details>
+      <summary>What if I have a question outside class?</summary>
+      <p>Message the WhatsApp number any time — tap the green button below.</p>
+    </details>
+  </section>
+
+  <footer>
+    Questions welcome any time on WhatsApp — tap the icon.
+  </footer>
+</div>
+
+<a class="wa-float" id="waFloat" href="#" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 32 32" fill="#0E1120"><path d="M16.001 3C9.373 3 4 8.373 4 15.001c0 2.386.657 4.67 1.904 6.679L4 29l7.5-1.865A11.94 11.94 0 0 0 16.001 27C22.63 27 28 21.63 28 15.001 28 8.373 22.629 3 16.001 3zm6.965 17.08c-.29.816-1.44 1.494-2.36 1.688-.628.132-1.448.238-4.209-.905-3.532-1.462-5.805-5.05-5.982-5.284-.176-.234-1.432-1.906-1.432-3.636s.905-2.578 1.226-2.932c.322-.353.703-.44.938-.44.235 0 .47.002.674.012.216.01.507-.082.793.606.29.7.985 2.42 1.07 2.596.088.176.147.382.03.616-.117.234-.176.382-.352.588-.176.206-.37.46-.528.618-.176.176-.36.367-.155.72.206.353.913 1.508 1.96 2.442 1.347 1.2 2.483 1.572 2.837 1.748.353.176.559.147.766-.088.206-.235.882-1.03 1.117-1.383.235-.353.47-.294.793-.176.323.117 2.05.967 2.402 1.143.353.176.588.264.674.412.088.147.088.856-.202 1.672z"/></svg>
+</a>
+
+<script>
+  const phone = "60175047568"; // Malaysia number, international format, no leading 0 or +
+  const message = "Hi! I'm interested in the AI website-building course. Can you tell me more?";
+  const link = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
+  document.getElementById('waCta').href = link;
+  document.getElementById('waFloat').href = link;
+</script>
+
+</body>
+</html>
